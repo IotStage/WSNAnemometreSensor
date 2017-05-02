@@ -1,0 +1,23 @@
+ #######################################
+# Syntax Coloring Map For Anemometre lib
+######################################## 
+# Class
+#######################################
+
+Anemometre	KEYWORD1
+WSNAnemometreSensor KEYWORD1
+
+#######################################
+# Methods and Functions 
+#######################################	
+init KEYWORD2
+moyenne KEYWORD2
+getMesure KEYWORD2
+updateAnemometre KEYWORD2
+
+
+#######################################
+# Constants
+#######################################
+
+SensorPinAnemometre LITERAL1
