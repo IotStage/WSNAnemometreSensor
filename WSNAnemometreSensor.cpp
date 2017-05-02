@@ -53,7 +53,9 @@ void Anemometre::init(uint8_t offset, uint8_t mesure, uint32_t Convertion,uint8_
 
 uint8_t Anemometre::getMesure()
 {
-	return anemometreValue;
+	uint8_t tmp = anemometreValue;
+	anemometreValue = 0;
+	return tmp*2*3.14*7.2*0.01;
 };
 
 uint16_t Anemometre::moyenne(uint8_t* arr, uint8_t number)
@@ -104,10 +106,10 @@ void Anemometre::updateAnemometre()
 {
 	static unsigned long samplingTime = millis();
 	static uint16_t voltage;
-	static uint16_t tempsDebut;
+	unsigned long tempsDebut;
 
-	if(millis()-samplingTime > _intervalMesure)
-	{
+	//if(millis()-samplingTime > _intervalMesure)
+	//{
 		//tableauAnemometre[indexAnemometre++]=
 		_etatPin = digitalRead(_sensorPin);
 		if(_etatPin == 1 ){
@@ -119,16 +121,23 @@ void Anemometre::updateAnemometre()
       			nbTour = (_etatPin !=  etat) ? nbTour+1 : nbTour; 
       			_etatPin = etat;
     		 }
-    		tableauAnemometre[indexAnemometre++]=nbTour;
+    		tableauAnemometre[indexAnemometre++]=nbTour;//*2*3.14*7.2*0.01;
 			if(indexAnemometre==_tailleEchantillon)
 			{
 				indexAnemometre=0;
 			}
+		/*for (int i = 0; i < _tailleEchantillon; ++i)
+		{
+			Serial.print(tableauAnemometre[i]);
+			Serial.print(",");
+			 code 
+		}
+		Serial.println();*/ 
 		voltage = moyenne(tableauAnemometre, _tailleEchantillon);
-		anemometreValue = 2*3.14*7.2*0.01*voltage;
-		samplingTime=millis();
+		anemometreValue = voltage;
+		//samplingTime=millis();
+	//}
 	}
-}
 };
 
 

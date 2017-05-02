@@ -10,7 +10,7 @@
 #define SensorPin 5  //le pin ou est branche le capteur
 #define Offset 1  //compensation de la deviation
 //#define LED 13      //le pin du led sur la carte
-#define intervalMesure 20 //intervalle de ou on lit les valeurs sur le pin SensorPin
+#define intervalMesure 5 //intervalle de ou on lit les valeurs sur le pin SensorPin
 #define intervalConvertion 800 //intervalle ou les valeurs prises seront convertis en anemometre
 #define tailleEchantillon  40  //taille des echantillons
 #define intervalleCalcul   1000
